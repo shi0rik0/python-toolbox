@@ -1,6 +1,8 @@
 from setuptools import setup, find_packages
 from pathlib import Path
 
+COMMAND_PREFIX = 'my_'
+
 
 def get_package_name() -> str:
     p = Path(__file__).parent.resolve() / 'src'
@@ -15,17 +17,25 @@ def get_package_name() -> str:
     return directories[0].replace('_', '-')
 
 
+package_name = get_package_name()
+subpackages = find_packages('src')
+subpackages = [i for i in subpackages if i.count('.') == 1]
+
+
+def package_name_to_command_name(package_name: str) -> str:
+    return COMMAND_PREFIX + package_name.split('.')[-1].replace('_', '-')
+
+
 setup(
     version='0.0.0',
     install_requires=[],
     python_requires='>=3.6',
     entry_points={
-        'console_scripts': [
-            'example-hello = example_package:hello',
-        ],
+        'console_scripts':
+        [f'{package_name_to_command_name(i)} = {i}:main' for i in subpackages],
     },
     # You don't need to change the arguments below
-    name=get_package_name(),
+    name=package_name,
     packages=find_packages('src'),
     package_dir={'': 'src'},
 )
