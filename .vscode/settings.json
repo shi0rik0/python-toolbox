@@ -1,8 +1,6 @@
 {
-    "python.analysis.typeCheckingMode": "standard",
-    "[python]": {
-        "editor.defaultFormatter": "eeyore.yapf",
-        "editor.formatOnSave": true,
-        "editor.formatOnType": false
-    }
+  "python.analysis.typeCheckingMode": "standard",
+  "[python]": {
+    "editor.defaultFormatter": "eeyore.yapf"
+  }
 }

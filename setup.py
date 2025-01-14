@@ -14,7 +14,7 @@ def get_package_name() -> str:
         raise ValueError(
             f'Expected exactly one package directory in {p}, found {directories}'
         )
-    return directories[0].replace('_', '-')
+    return directories[0]
 
 
 package_name = get_package_name()
@@ -34,8 +34,10 @@ setup(
         'console_scripts':
         [f'{package_name_to_command_name(i)} = {i}:main' for i in subpackages],
     },
+    include_package_data=True,
+    package_data={package_name: ['create_electron/data/*']},
     # You don't need to change the arguments below
-    name=package_name,
+    name=package_name.replace('_', '-'),
     packages=find_packages('src'),
     package_dir={'': 'src'},
 )
