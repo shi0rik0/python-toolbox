@@ -34,7 +34,7 @@ DEV_DEPENDENCIES = [
     'eslint-define-config',
 
     # Tailwind CSS
-    'tailwindcss',
+    'tailwindcss@3.4.17',  # TODO: upgrade to 4.x.
     'postcss',
     'autoprefixer',
 ]
