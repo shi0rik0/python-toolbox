@@ -72,5 +72,8 @@ def main():
     # Mount Vue
     copy_files('src/App.vue', 'index.html', 'src/index.css', 'src/renderer.ts')
 
+    # I don't like yarn, so delete it
+    Path('yarn.lock').unlink()
+
     # Format the code
     subprocess.run([NPX, 'prettier', '--write', '.'], check=True)
