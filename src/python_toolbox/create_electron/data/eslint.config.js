@@ -1,8 +1,7 @@
 const { fixupConfigRules } = require('@eslint/compat')
 const globals = require('globals')
+const vueParser = require('vue-eslint-parser')
 const tsParser = require('@typescript-eslint/parser')
-const path = require('node:path')
-const { fileURLToPath } = require('node:url')
 const js = require('@eslint/js')
 const { FlatCompat } = require('@eslint/eslintrc')
 const { defineFlatConfig } = require('eslint-define-config')
@@ -34,7 +33,10 @@ module.exports = defineFlatConfig([
         ...globals.browser,
         ...globals.node,
       },
-      parser: tsParser,
+      parser: vueParser,
+      parserOptions: {
+        parser: tsParser,
+      },
     },
   },
 ])
