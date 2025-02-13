@@ -1,13 +1,13 @@
-import { fixupConfigRules } from '@eslint/compat'
-import globals from 'globals'
-import tsParser from '@typescript-eslint/parser'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-import js from '@eslint/js'
-import { FlatCompat } from '@eslint/eslintrc'
-import { defineFlatConfig } from 'eslint-define-config'
-import pluginVue from 'eslint-plugin-vue'
-import eslintConfigPrettier from 'eslint-config-prettier'
+const { fixupConfigRules } = require('@eslint/compat')
+const globals = require('globals')
+const tsParser = require('@typescript-eslint/parser')
+const path = require('node:path')
+const { fileURLToPath } = require('node:url')
+const js = require('@eslint/js')
+const { FlatCompat } = require('@eslint/eslintrc')
+const { defineFlatConfig } = require('eslint-define-config')
+const pluginVue = require('eslint-plugin-vue')
+const eslintConfigPrettier = require('eslint-config-prettier')
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -17,7 +17,7 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 })
 
-export default defineFlatConfig([
+module.exports = defineFlatConfig([
   eslintConfigPrettier,
   ...pluginVue.configs['flat/recommended'],
   ...fixupConfigRules(
@@ -27,8 +27,8 @@ export default defineFlatConfig([
       'plugin:@typescript-eslint/recommended',
       'plugin:import/recommended',
       'plugin:import/electron',
-      'plugin:import/typescript'
-    )
+      'plugin:import/typescript',
+    ),
   ),
   {
     languageOptions: {
@@ -36,7 +36,6 @@ export default defineFlatConfig([
         ...globals.browser,
         ...globals.node,
       },
-
       parser: tsParser,
     },
   },
