@@ -39,4 +39,11 @@ module.exports = defineFlatConfig([
       },
     },
   },
+  {
+    files: ['**/*.vue'],
+    rules: {
+      'vue/singleline-html-element-content-newline': 'off',
+      'vue/html-self-closing': ['error', { html: { normal: 'never' } }],
+    },
+  },
 ])

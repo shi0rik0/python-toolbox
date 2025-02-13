@@ -65,6 +65,8 @@ def main():
 
     # Copy ESLint config
     copy_files('eslint.config.js')
+    # The default ESLint config file is in an outdated format, so delete it
+    Path('.eslintrc.json').unlink()
 
     # Copy VSCode settings
     copy_files('.vscode/settings.json', '.vscode/extensions.json')
